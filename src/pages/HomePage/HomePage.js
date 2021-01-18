@@ -8,6 +8,24 @@ import Select from 'react-select'
 import { PokemonContext } from '../App/App.js'
 import Card from '../../components/Card/Card.js'
 
+const Div = styled.div`
+
+    .search {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+    input {
+        font-size: 24px;
+        width: 29.5%;
+        margin: 5px;
+    }
+    .type-options {
+        width: 30%;
+        margin-bottom: 5px;
+    }
+`;
 
 const CardContainer = styled.div`
       display: flex;
@@ -56,7 +74,7 @@ export default function HomePage() {
         keys: [
             'name'
         ],
-        includeScore: true
+        includeScore: true,
     })
 
     const nameSearch = fuse.search(input);
@@ -74,11 +92,12 @@ export default function HomePage() {
     }
       
     return (
-        <div>
-            <span>Search By Name: <input placeholder="Pikachu" type="text" value={input} onChange={handleChange} /></span>
-
-            <Select options={formattedTypeOptions} onChange={typeFilterChange} isMulti />
-            <Select options={formattedTypeOptions} onChange={weaknessFilterChange} isMulti />
+        <Div>
+            <div className="search">
+                <input placeholder="Search by Name" type="text" value={input} onChange={handleChange} />
+                <Select placeholder="Filter by Type" className="type-options" options={formattedTypeOptions} onChange={typeFilterChange} isMulti />
+                <Select placeholder="Filter by Weakness" className="type-options" options={formattedTypeOptions} onChange={weaknessFilterChange} isMulti />
+            </div>
 
             <CardContainer>
                 {nameSearchResults.map(p => (
@@ -88,6 +107,6 @@ export default function HomePage() {
                     />
                 ))}
             </CardContainer>
-        </div>
+        </Div>
     )
 }

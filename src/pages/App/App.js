@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { BrowserRouter as Router, Route, Switch, withRouter } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, withRouter, Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 import Home from '../HomePage/HomePage'
@@ -9,13 +9,15 @@ const gitHubUrl = "https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/mas
 
 const Div = styled.div`
   background: #3a3a3a;
-  height: 20vh;
+  height: 10vh;
   color: palevioletred;
   font-size: 36px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
+
+
 
 export const PokemonContext = React.createContext([]);
 
@@ -32,7 +34,9 @@ function App() {
     <Router>
       <PokemonContext.Provider value={pokemon}>
         <div className="App">
-            <Div>Pokedex</Div>
+            <Div>
+              <Link to="/" style={{textDecoration: 'none', color: 'inherit'}}>Pokedex</Link>
+            </Div>
             <Switch>
                 <Route path="/details/:pokemonNum" component={Details} />
                 <Route exact path="/" component={Home} />
