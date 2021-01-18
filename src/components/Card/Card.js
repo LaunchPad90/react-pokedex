@@ -15,9 +15,12 @@ const Div = styled.div`
     .name {
         font-size: 30px;
         text-decoration: none;
+        justify-self: flex-start;
+        margin: 5px 0 8px 0;
     }
     .num {
         font-size: 12px;
+        margin-bottom: 8px;
     }
     .photo {
         border: 5px solid #edae49;
